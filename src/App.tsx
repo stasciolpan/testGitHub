@@ -1,17 +1,24 @@
-import Header from "./Header.tsx"
-import Footer from "./Footer.tsx"
-import Food from "./Food.tsx"
+import React from 'react';
+import SidebarCustom from './layouts/SidebarCustom';
+import ContentCustom from './layouts/ContentCustom';
+import HeaderCustom from './layouts/HeaderCustom';
+import FooterCustom from './layouts/FooterCustom';
+import CardCustom from './components/CardCustom';
+import { Layout } from 'antd';
 
-function App() {
 
-  return(
-    <>
-    <Header></Header>
-    <Footer></Footer>
-    <Food></Food>
-    </>
-  )
+const App: React.FC = () =>{
+  return (
+    <Layout hasSider>
+       <SidebarCustom></SidebarCustom>
+      <Layout style={{ marginLeft: 200 }}>
+      <HeaderCustom></HeaderCustom>
+      <CardCustom></CardCustom>
+        <ContentCustom></ContentCustom>
+        <FooterCustom></FooterCustom>
+      </Layout>
+    </Layout>
+  );
+};
 
-}
-
-export default App
+export default App;
