@@ -1,57 +1,29 @@
 import { Layout, theme } from "antd"
-import React, { useEffect, useState } from "react"
+import {Outlet} from "react-router-dom";
 
 const {Content } = Layout
 
-interface IProduct{
-  brand: string;
-  category: string;
-  description: string;
-  discountPercentage: number;
+export interface IProduct{
   id: number;
-  images: string[];
+  title: string;
+  description: string;
   price: number;
+  discountPercentage: number;
   rating: number;
   stock: number;
+  brand: string;
+  category: string;
   thumbnail: string;
-  title: string;
-
+  images: string[] ;
 }
 
 
+const ContentCustom = () =>
+{
 
-
-interface IProducts {
-  limit: number;
-  skip: number;
-  total: number;
-  products: IProduct[];
-
-}
-
-const [products, setProducts] = useState<IProduct[]>([]);
-
-
- const ContentCustom = () =>
- {
-
-        const {
-          token: { colorBgContainer, borderRadiusLG },
-        } = theme.useToken();
-
-
-const FetchProducts = () =>{
-fetch('https://dummyjson.com/products')
-.then(response => response.json())
-.then(data => setProducts(data))
-            
-}
-
-useEffect (()=> {
-
-},[])
-
-
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
 
     return (
         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
@@ -63,16 +35,7 @@ useEffect (()=> {
               borderRadius: borderRadiusLG,
             }}
           >
-            <p>long content</p>
-            {
-              // indicates very long content
-              Array.from({ length: 100 }, (_, index) => (
-                <React.Fragment key={index}>
-                  {index % 20 === 0 && index ? 'more' : '...'}
-                  <br />
-                </React.Fragment>
-              ))
-            }
+            <Outlet></Outlet>
           </div>
         </Content>
     )
